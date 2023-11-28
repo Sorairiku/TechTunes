@@ -1,0 +1,368 @@
+.ui-background-1 {
+  position: absolute;
+  top: calc(50% - 540px);
+  left: calc(50% - 960px);
+  width: 1920px;
+  height: 1080px;
+  object-fit: cover;
+}
+.desktop-1-child {
+  position: absolute;
+  top: 110px;
+  left: 769px;
+  border-radius: 55px;
+  background-color: var(--color-black);
+  width: 384px;
+  height: 378px;
+}
+.ere-cover-art-by-juan-karlos-1-icon {
+  position: absolute;
+  top: 119px;
+  left: 778px;
+  border-radius: 50px;
+  width: 366px;
+  height: 361px;
+  object-fit: cover;
+}
+.juan-carlos,
+.now-playing-ere {
+  position: absolute;
+  top: 497px;
+  left: 730px;
+  font-size: 32px;
+  display: inline-block;
+  width: 464px;
+  height: 66px;
+}
+.juan-carlos {
+  top: 563px;
+  left: 850px;
+  font-size: 24px;
+  width: 222px;
+  height: 47px;
+}
+.vuesax-icon,
+.vuesax-icon1,
+.vuesax-icon2,
+.vuesax-icon3 {
+  position: absolute;
+  top: 351px;
+  left: 42px;
+  width: 48px;
+  height: 48px;
+}
+.vuesax-icon1,
+.vuesax-icon2,
+.vuesax-icon3 {
+  top: 429px;
+}
+.vuesax-icon2,
+.vuesax-icon3 {
+  top: 505px;
+}
+.vuesax-icon3 {
+  top: 583px;
+}
+.vuesax-icon4,
+.vuesax-icon5,
+.vuesax-icon6,
+.vuesax-icon7 {
+  position: absolute;
+  top: 660px;
+  left: 42px;
+  width: 48px;
+  height: 48px;
+}
+.vuesax-icon5,
+.vuesax-icon6,
+.vuesax-icon7 {
+  top: 737px;
+}
+.vuesax-icon6,
+.vuesax-icon7 {
+  top: 814px;
+}
+.vuesax-icon7 {
+  top: 891px;
+}
+.ere {
+  margin: 0;
+}
+.bad-denise-julia-container,
+.ere-juan-carlos-container {
+  position: absolute;
+  top: 352px;
+  left: 113px;
+}
+.bad-denise-julia-container {
+  top: 429px;
+}
+.homebody-demi,
+.ngayong-gabi-al-container {
+  position: absolute;
+  top: 505px;
+  left: 113px;
+}
+.homebody-demi {
+  top: 583px;
+}
+.raining-in-manila-container {
+  position: absolute;
+  top: 660px;
+  left: 113px;
+}
+.imahe-magnus-haven-container {
+  position: absolute;
+  top: 737px;
+  left: 113px;
+}
+.kahit-ayaw-mo-container,
+.maybe-the-night-container {
+  position: absolute;
+  top: 814px;
+  left: 113px;
+}
+.kahit-ayaw-mo-container {
+  top: 891px;
+}
+.desktop-1-inner,
+.desktop-1-item,
+.line-icon {
+  position: absolute;
+  top: 332px;
+  left: 13px;
+  width: 500px;
+  height: 2.02px;
+}
+.desktop-1-inner,
+.line-icon {
+  top: 415px;
+}
+.line-icon {
+  top: 492px;
+}
+.desktop-1-child1,
+.desktop-1-child2,
+.desktop-1-child3 {
+  position: absolute;
+  top: 569px;
+  left: 13px;
+  width: 500px;
+  height: 2.02px;
+}
+.desktop-1-child2,
+.desktop-1-child3 {
+  top: 644px;
+}
+.desktop-1-child3 {
+  top: 723px;
+}
+.desktop-1-child4,
+.desktop-1-child5,
+.desktop-1-child6 {
+  position: absolute;
+  top: 800px;
+  left: 13px;
+  width: 500px;
+  height: 2.02px;
+}
+.desktop-1-child5,
+.desktop-1-child6 {
+  top: 877px;
+}
+.desktop-1-child6 {
+  top: 954px;
+}
+.vuesax-icon10,
+.vuesax-icon11,
+.vuesax-icon8,
+.vuesax-icon9 {
+  position: absolute;
+  top: 346px;
+  left: 433px;
+  width: 24px;
+  height: 24px;
+}
+.vuesax-icon10,
+.vuesax-icon11,
+.vuesax-icon9 {
+  top: 423px;
+}
+.vuesax-icon10,
+.vuesax-icon11 {
+  top: 500px;
+}
+.vuesax-icon11 {
+  top: 577px;
+}
+.vuesax-icon12,
+.vuesax-icon13,
+.vuesax-icon14,
+.vuesax-icon15 {
+  position: absolute;
+  top: 654px;
+  left: 433px;
+  width: 24px;
+  height: 24px;
+}
+.vuesax-icon13,
+.vuesax-icon14,
+.vuesax-icon15 {
+  top: 731px;
+}
+.vuesax-icon14,
+.vuesax-icon15 {
+  top: 808px;
+}
+.vuesax-icon15 {
+  top: 885px;
+}
+.add-icon,
+.add-icon1,
+.add-icon2,
+.add-icon3 {
+  position: absolute;
+  top: 376px;
+  left: 434px;
+  width: 24px;
+  height: 24px;
+}
+.add-icon1,
+.add-icon2,
+.add-icon3 {
+  top: 453px;
+}
+.add-icon2,
+.add-icon3 {
+  top: 530px;
+}
+.add-icon3 {
+  top: 607px;
+}
+.add-icon4,
+.add-icon5,
+.add-icon6,
+.add-icon7,
+.line-div {
+  position: absolute;
+  top: 684px;
+  left: 434px;
+  width: 24px;
+  height: 24px;
+}
+.add-icon5,
+.add-icon6,
+.add-icon7,
+.line-div {
+  top: 761px;
+}
+.add-icon6,
+.add-icon7,
+.line-div {
+  top: 838px;
+}
+.add-icon7,
+.line-div {
+  top: 915px;
+}
+.line-div {
+  top: 717.5px;
+  left: 639.5px;
+  border-top: 1px solid var(--color-black);
+  box-sizing: border-box;
+  width: 643px;
+  height: 1px;
+}
+.ellipse-div {
+  position: absolute;
+  top: 692px;
+  left: 809px;
+  border-radius: 50%;
+  background-color: var(--color-black);
+  width: 42px;
+  height: 45px;
+}
+.desktop-1-child7 {
+  position: absolute;
+  top: 250.87px;
+  left: 1739.5px;
+  width: 2.65px;
+  height: 569.13px;
+}
+.desktop-1-child8 {
+  position: absolute;
+  top: 231px;
+  left: 1719px;
+  border-radius: 50%;
+  background-color: var(--color-black);
+  width: 43px;
+  height: 49px;
+}
+.div,
+.div1 {
+  position: absolute;
+  top: 739px;
+  left: 640px;
+  font-size: var(--font-size-mini);
+  color: var(--color-black);
+  display: inline-block;
+  width: 68px;
+  height: 40px;
+}
+.div1 {
+  top: 734px;
+  left: 1214px;
+  height: 42px;
+}
+.pauseplay-icon,
+.shuffle-icon,
+.vuesaxlinearprevious-icon {
+  position: absolute;
+  top: 835px;
+  left: 646px;
+  width: 51px;
+  height: 53px;
+}
+.pauseplay-icon,
+.vuesaxlinearprevious-icon {
+  left: 778px;
+}
+.pauseplay-icon {
+  top: 785px;
+  left: 907px;
+  width: 139px;
+  height: 146px;
+}
+.next-icon,
+.repeat-icon {
+  position: absolute;
+  top: 835px;
+  left: 1122px;
+  width: 53px;
+  height: 53px;
+}
+.repeat-icon {
+  top: 833px;
+  left: 1230px;
+  width: 52px;
+  height: 54px;
+}
+.feu-tech-official-seal-1-icon {
+  position: absolute;
+  top: 936px;
+  left: 1802px;
+  width: 118px;
+  height: 138px;
+  object-fit: cover;
+}
+.desktop-1 {
+  position: relative;
+  background-color: var(--color-white);
+  width: 100%;
+  height: 1080px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-xl);
+  color: var(--color-white);
+  font-family: var(--font-inter);
+}

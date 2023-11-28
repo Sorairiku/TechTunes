@@ -1,0 +1,211 @@
+/* Google Fonts - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: url('./public/ui-background-1@2x.png') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+}
+
+#songList,
+#songQueue,
+#controls,
+#current,
+#coverArt {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#songList {
+    align-self: flex-start;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#songQueue {
+    color: #fff;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 25px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#controls {
+    cursor: pointer;
+}
+
+#techtunes {
+    position: center;
+    top: 0%;
+    left: 50%;
+    height: 120px;
+    width: 300px;
+    margin-top: 5px;
+    border-radius: 20%;
+    border: 4px solid #4CAF50;
+}
+
+#tamlogo {
+    position: center;
+    top: 0%;
+    left: 50%;
+    height: 70px;
+    width: 70px;
+    margin-top: 5px;
+    border-radius: 40%;
+    border: 4px solid #000;
+}
+#current {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center both vertically and horizontally */
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    text-align: center; /* Center text */
+    border-radius: 55px;
+    padding: 30px; /* Add padding for better aesthetics */
+}
+
+#songList ul {
+    font-family: 'Open Sans', sans-serif;
+    list-style-type: none;
+    padding: 0;
+}
+
+    #songList ul li {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 25px; /* Adjust the font size as needed */
+        
+    }
+
+#coverArt {
+    display: inline-block; /* Added to make the image inline */
+    margin: auto;
+    align-self: center;
+    width: 170px; /* Adjust the size of the cover art */
+    height: 170px;
+    margin-top: 20px;
+    display: none; /* Initially hide the cover art */
+    border-radius: 50%;
+    border: 4px solid #4CAF50;
+    box-shadow: 0 10px 60px #4CAF50;
+}
+
+#currentlyPlaying {
+    align-self: center;
+    font-size: 25px;
+    margin-top: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+#controls button,
+#controls img {
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+
+.ngayon-cover-art,
+.ere-cover-art,
+.imahe-cover-art {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 2px solid #4CAF50;
+    box-shadow: 0 10px 60px rgba(255, 26, 26, 0.22);
+}
+
+
+.specific-audio {
+    cursor: pointer;
+    width: 50px; /* Adjust the width of the specific audio button */
+    height: 50px; /* Adjust the height of the specific audio button */
+}
+
+#volumeControl {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background; #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#logoContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+    #logoContainer img {
+        width: 100px; /* Adjust the size of the logo */
+    }
+
+.wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 130px;
+    margin: 0 15px;
+    max-width: 300px;
+    width: 100%;
+    padding: 0 20px;
+    border-radius: 25px;
+}
+
+    .wrapper #icon {
+        font-size: 35px;
+        color: #000;
+        width: 70px;
+        text-align: center;
+    }
+ 
+
+input::-webkit-slider-thumb {
+    appearance: none;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    border: 2px solid #4CAF50;
+    background-color: #000;
+    
+}
+
+.wrapper .slide-value {
+    font-size: 27px;
+    font-weight: 500;
+    color: #000;
+    width: 70px;
+    text-align: center;
+}
+#progress {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background; #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 40px 0;
+}
+
+

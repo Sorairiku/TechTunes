@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Tunes</title>
+    <link rel="stylesheet"
+          href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap">
+    <link rel="icon" href="public/tamlogo.jpg" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/b395562c04.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <style>
+        /* Google Fonts - Poppins */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+
+        /* Common styles for both desktop and mobile */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('./public/ui-background-1@2x.png') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Google Fonts - Poppins */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+        /* Styles for desktop */
+        #songList,
+        #songQueue,
+        #controls,
+        #current,
+        #coverArt {
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        #songList {
+            align-self: flex-start;
+            font-family: 'Open Sans', sans-serif;
+
+        }
+
+        #songQueue {
+            color: #fff;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 25px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .controls div {
+                display: inline-flex;
+                cursor: pointer;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                width: 60px;
+                height: 60px;
+                margin: 20px;
+                background: #fff;
+                color: #000;
+                box-shadow: 0 5px 10px #034911;
+            }
+
+                .controls div:nth-child(2) {
+                    transform: scale(1.5);
+                    background: #4CAF50;
+                    color: #000;
+                }
+
+        .list div {
+            display: inline-flex;
+            cursor: pointer;
+            justify-content: end;
+            align-items: center;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            background: #4CAF50;
+            color: #000;
+            box-shadow: 0 5px 10px #034911;
+        }
+
+        #name {
+            position: center;
+        }
+        .logo {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo div {
+            margin-right: 5px;
+        }
+        #techtunes {
+            height: 120px;
+            width: 300px;
+            margin-top: 5px;
+            border-radius: 20%;
+            border: 4px solid #4CAF50;
+        }
+
+        #tamlogo {
+            height: 70px;
+            width: 70px;
+            margin-top: 5px;
+            border-radius: 40%;
+            border: 4px solid #000;
+        }
+
+        #current {
+            font-family: 'Open Sans', sans-serif;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            border-radius: 55px;
+            padding: 30px;
+        }
+
+        #songList ul {
+            font-family: 'Open Sans', sans-serif;
+            list-style-type: none;
+            padding: 0;
+        }
+
+            #songList ul li {
+                font-family: 'Open Sans', sans-serif;
+                font-size: 23px;
+                display: flex;
+                align-items: center;
+                margin-top: 10px;
+            }
+
+                #songList ul li i {
+                    margin-right: 10px;
+                }
+
+        .add-icon {
+            margin-left: auto;
+        }
+
+        #coverArt {
+            display: inline-block;
+            margin: auto;
+            align-self: center;
+            width: 170px;
+            height: 170px;
+            margin-top: 20px;
+            display: none;
+            border-radius: 50%;
+            border: 4px solid #4CAF50;
+            box-shadow: 0 10px 60px #4CAF50;
+        }
+
+        #currentlyPlaying {
+            align-self: center;
+            font-size: 25px;
+            margin-top: 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        #controls button,
+        #controls img {
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .ngayon-cover-art,
+        .ere-cover-art,
+        .imahe-cover-art {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+            border: 2px solid #4CAF50;
+            box-shadow: 0 10px 60px rgba(255, 26, 26, 0.22);
+        }
+
+        #add {
+            position: center;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+        }
+
+        #volumeControl {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #logoContainer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+
+            #logoContainer img {
+                width: 100px;
+            }
+
+        .wrapper {
+            position: fixed;
+            bottom: 20px;
+            right: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 130px;
+            margin: 0 15px;
+            max-width: 300px;
+            width: 100%;
+            padding: 0 20px;
+            border-radius: 25px;
+        }
+
+            .wrapper #icon {
+                font-size: 35px;
+                color: #000;
+                width: 70px;
+                text-align: center;
+            }
+
+        input::-webkit-slider-thumb {
+            appearance: none;
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            border: 2px solid #4CAF50;
+            background-color: #000;
+        }
+
+        .wrapper .slide-value {
+            font-size: 27px;
+            font-weight: 500;
+            color: #000;
+            width: 70px;
+            text-align: center;
+        }
+
+        #progress {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 40px 0;
+        }
+
+        /* Styles for mobile */
+        @media (max-width: 767px) {
+            #songList,
+            #songQueue,
+            #controls,
+            #current,
+            #coverArt {
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+
+            #songList {
+                align-self: center;
+            }
+
+            #songQueue {
+                position: relative;
+                top: initial;
+                right: initial;
+                margin-top: 20px;
+            }
+
+            .controls div {
+                width: 40px;
+                height: 40px;
+                margin: 10px;
+            }
+
+            #techtunes {
+                height: 80px;
+                width: 200px;
+                margin-top: 10px;
+            }
+
+            #tamlogo {
+                height: 50px;
+                width: 50px;
+                margin-top: 10px;
+            }
+
+            #logoContainer {
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+
+        
+
+    </style>
+    
+    <div class="logo">
+        <div><img id="techtunes" class="techtunes" alt="" src="./public/TechTunes.png"></div>
+        <div><img id="tamlogo" class="tamlogo" alt="" src="./public/tamlogo.jpg"></div>
+    </div>
+
+    <div id="volumeControlContainer" class="wrapper">
+        <i class="uil uil-volume-down" id="icon"></i>
+        <!-- Add the volume control input with its specific attributes and event handlers -->
+        <input type="range" id="volumeControl" min="0" step="1" max="100" value="20" oninput="setVolume()" onmousedown="startChangingVolume()" onmouseup="stopChangingVolume()">
+        <span class="slide-value">20</span>
+    </div>
+
+    <script>
+        const icon = document.querySelector("#icon"),
+            range = document.querySelector("input"),
+            slideValue = document.querySelector(".slide-value");
+
+        range.addEventListener("input", () => {
+            let rangeVal = range.value;
+            slideValue.innerText = rangeVal;
+
+            if (rangeVal > 0) {
+                icon.classList.replace("uil-volume-mute", "uil-volume-down");
+            } else {
+                icon.classList.replace("uil-volume-down", "uil-volume-mute");
+            }
+            if (rangeVal > 30) {
+                icon.classList.replace("uil-volume-down", "uil-volume");
+            } else {
+                icon.classList.replace("uil-volume", "uil-volume-down");
+            }
+            if (rangeVal > 80) {
+                icon.classList.replace("uil-volume", "uil-volume-up");
+            } else {
+                icon.classList.replace("uil-volume-up", "uil-volume");
+            }
+        });
+    </script>
+    <div id="songList" class="list">
+        <p>Songs:</p>
+        <ul>
+            <!-- Add a class to the image for styling -->
+            <img class="line-1" alt="" src="./public/line-1.svg">
+            <li>
+                <div><i class="fa-solid fa-play" onclick="playSpecificAudio('ERE - Juan Karlos', 'ere.mp3')"></i></div>
+                <img class="ere-cover-art" alt="" src="./public/ere - juan karlos-cover-art.jpg">
+                ERE - Juan Karlos
+                <img id="add" class="add-icon" alt="" src="./public/add.svg" onclick="enqueue({ title: 'ERE - Juan Karlos', file: 'ere.mp3' })">
+            </li>
+            <img class="line-1" alt="" src="./public/line-1.svg">
+            <li>
+                <div><i class="fa-solid fa-play" onclick="playSpecificAudio('Imahe - Magnus Haven', 'imahe.mp3')"></i></i></div>
+                <img class="imahe-cover-art" alt="" src="./public/imahe - magnus haven-cover-art.jpg">
+                Imahe - Magnus Haven
+                <img id="add" class="add-icon" alt="" src="./public/add.svg" onclick="enqueue({ title: 'Imahe - Magnus Haven', file: 'imahe.mp3' })">
+            </li>
+            <img class="line-1" alt="" src="./public/line-1.svg">
+            <li>
+                <div><i class="fa-solid fa-play" onclick="playSpecificAudio('Ngayong Gabi - Al James', 'ngayon.mp3')" /></i></div>
+                <img class="ngayon-cover-art" alt="" src="./public/ngayong gabi - al james-cover-art.jpg">
+                Ngayong Gabi - Al James
+                <img id="add" class="add-icon" alt="" src="./public/add.svg" onclick="enqueue({ title: 'Ngayong Gabi - Al James', file: 'ngayon.mp3' })">
+            </li>
+            <img class="line-1" alt="" src="./public/line-1.svg">
+            <li>
+                <div><i class="fa-solid fa-play" onclick="playSpecificAudio('Maybe the Night - Ben&Ben', 'night.mp3')"></i></div>
+                <img class="ngayon-cover-art" alt="" src="./public/maybe the night - ben&ben-cover-art.jpg">
+                Maybe the Night - Ben&Ben
+                <img id="add" class="add-icon" alt="" src="./public/add.svg" onclick="enqueue({ title: 'Maybe the Night - Ben&Ben', file: 'night.mp3' })">
+            </li>
+            <img class="line-1" alt="" src="./public/line-1.svg">
+            <li>
+                <div><i class="fa-solid fa-play" onclick="playSpecificAudio('Kahit Ayaw mo Na - This Band', 'ayaw.mp3')"></i></div>
+                <img class="ngayon-cover-art" alt="" src="./public/kahit ayaw mo na - this band-cover-art.jpg">
+                Kahit Ayaw mo Na - This Band
+                <img id="add" class="add-icon" alt="" src="./public/add.svg" onclick="enqueue({ title: 'Kahit Ayaw mo Na - This Band', file: 'ayaw.mp3' })">
+            </li>
+            <img class="line-1" alt="" src="./public/line-1.svg">
+            <li>
+                <div><i class="fa-solid fa-play" onclick="playSpecificAudio('B.A.D - Denise Julia', 'bad.mp3')"></i></div>
+                <img class="ngayon-cover-art" alt="" src="./public/b.a.d - denise julia-cover-art.jpg">
+                B.A.D - Denise Julia
+                <img id="add" class="add-icon" alt="" src="./public/add.svg" onclick="enqueue({ title: 'B.A.D - Denise Julia', file: 'bad.mp3' })">
+            </li>
+            <img class="line-1" alt="" src="./public/line-1.svg">
+            <li>
+                <div><i class="fa-solid fa-play" onclick="playSpecificAudio('Raining in Manila - Lola Amour', 'raining.mp3')"></i></div>
+                <img class="ngayon-cover-art" alt="" src="./public/raining in manila - lola amour-cover-art.jpg">
+                Raining in Manila - Lola Amour
+                <img id="add" class="add-icon" alt="" src="./public/add.svg" onclick="enqueue({ title: 'Raining in Manila - Lola Amour', file: 'raining.mp3' })">
+            </li>
+            <img class="line-1" alt="" src="./public/line-1.svg">
+            <li>
+                <div><i class="fa-solid fa-play" onclick="playSpecificAudio('HomeBdy - DEMI', 'homebdy.mp3')"></i></div>
+                <img class="ngayon-cover-art" alt="" src="./public/homebdy - demi-cover-art.jpg">
+                HomeBdy - DEMI
+                <img id="add" class="add-icon" alt="" src="./public/add.svg" onclick="enqueue({ title: 'HomeBdy - DEMI', file: 'homebdy.mp3' })">
+            </li>
+            <img class="line-1" alt="" src="./public/line-1.svg">
+        </ul>
+    </div>
+
+    <div id="songQueue">
+        <p>Queue:</p>
+        <ul id="queue"></ul>
+    </div>
+    <div id="current">
+        <img id="coverArt" alt="" src="" />
+        <div id="currentlyPlaying"></div>
+        <input type="range" id="progress" min="0" max="100" value="0" oninput="setTime()" />
+        <div class="controls">
+            <div><i class="fa-solid fa-backward" onclick="playPrevious()" /></i></div>
+            <div id="playPauseButton" onclick="togglePlayPause()"></div>
+            <div><i class="fa-solid fa-forward" onclick="playNext()" /></i></div>
+        </div>
+
+    </div>
+
+                <div id="logoContainer">
+                    <img src="./public/feulogo.png" alt="FEU Logo">
+                </div>
+
+                <script>
+                    let audio;
+                    let songs = [];
+                    let isPlaying = false;
+                    let currentSongIndex = 0;
+                    let previousSongIndex = 0;
+                    let isPlayingSpecificAudio = false;
+
+                    let specificAudio = {};
+                    let isChangingVolume = false;
+
+                    let progress = document.getElementById("progress");
+                    let updateSliderInterval;
+
+                    function enqueue(song) {
+                        if (isPlayingSpecificAudio) {
+                            songs.splice(1, 0, song);
+                        } else {
+                            songs.push(song);
+                        }
+
+                        displayQueue();
+
+                        if (!audio || isPlayingSpecificAudio) {
+                            playQueue();
+                        }
+
+                        updateSlider();
+                    }
+
+                    function dequeue(index) {
+                        if (index >= 0 && index < songs.length) {
+                            previousSongIndex = currentSongIndex;
+                            currentSongIndex = index;
+
+                            let currentSong = songs[index];
+                            updateCurrentlyPlaying(currentSong.title);
+
+                            if (audio) {
+                                audio.pause();
+                                audio.removeEventListener('ended', playNext);
+                                audio = undefined;
+                                isPlaying = false;
+                            }
+
+                            audio = new Audio(currentSong.file);
+                            audio.volume = document.getElementById("volumeControl").value / 100;
+                            audio.play();
+                            isPlaying = true;
+
+                            updateCoverArt(currentSong.title);
+
+                            document.getElementById("volumeControl").style.display = "block";
+                        } else {
+                            console.log("Invalid index.");
+                        }
+                        updateSlider();
+                    }
+                    updatePlayPauseIcon();
+                    
+                    // Add an event listener for the play/pause button
+                    document.getElementById("playPauseButton").addEventListener("click", togglePlayPauseButton);
+
+                    // Function to toggle the play/pause button
+                    function togglePlayPauseButton() {
+                        if (audio) {
+                            if (isPlaying) {
+                                audio.pause();
+                            } else {
+                                audio.play();
+                                updateSliderInterval = setInterval(updateSlider, 10);
+                            }
+                            isPlaying = !isPlaying;
+                            updatePlayPauseIcon();
+                        } else if (songs.length > 0) {
+                            playQueue();
+                        }
+                    }
+
+                    // Function to update the play/pause button icon
+                    function updatePlayPauseIcon() {
+                        let playPauseButton = document.getElementById("playPauseButton");
+                        if (isPlaying) {
+                            playPauseButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                        } else {
+                            playPauseButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+                        }
+                    }
+
+                    // Call the function to set the initial icon based on whether audio is playing or not
+                    updatePlayPauseIcon();
+
+
+                    function playQueue() {
+                        isPlayingSpecificAudio = false;
+                        specificAudio = {};
+
+                        if (songs.length > 0) {
+                            dequeue(0);
+                            audio.addEventListener('ended', playNext);
+                            updateSliderInterval = setInterval(updateSlider, 10);
+                        }
+                    }
+
+                    function playNext() {
+                        currentSongIndex = (currentSongIndex + 1) % songs.length;
+                        dequeue(currentSongIndex);
+                        displayQueue();
+                    }
+
+                    function playPrevious() {
+                        if (audio) {
+                            audio.pause();
+                            audio.removeEventListener('ended', playNext);
+                            audio = undefined;
+                            isPlaying = false;
+                        }
+
+                        if (songs.length > 0) {
+                            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+                            dequeue(currentSongIndex);
+                            displayQueue();
+                        } else {
+                            currentSongIndex = 0;
+                            updateCurrentlyPlaying("");
+                        }
+                    }
+
+                    function displayQueue() {
+                        let queueElement = document.getElementById("queue");
+                        queueElement.innerHTML = "";
+
+                        songs.forEach((song, index) => {
+                            let listItem = document.createElement("li");
+                            listItem.textContent = song.title;
+
+                            queueElement.appendChild(listItem);
+                        });
+                    }
+
+                    function updateCurrentlyPlaying(title) {
+                        let currentlyPlayingElement = document.getElementById("currentlyPlaying");
+                        currentlyPlayingElement.textContent = title;
+                    }
+
+                    function updateCoverArt(title) {
+                        let coverArtElement = document.getElementById("coverArt");
+                        coverArtElement.src = `./public/${title.toLowerCase()}-cover-art.jpg`;
+                        coverArtElement.style.display = "block";
+                    }
+
+                    function setVolume() {
+                        if (!isChangingVolume) {
+                            if (audio) {
+                                audio.volume = document.getElementById("volumeControl").value / 100;
+                            }
+                        }
+                    }
+
+                    function startChangingVolume() {
+                        isChangingVolume = true;
+                    }
+
+                    function stopChangingVolume() {
+                        isChangingVolume = false;
+                        setVolume();
+                    }
+
+                    function updateSlider() {
+                        if (audio) {
+                            progress.value = (audio.currentTime / audio.duration) * 100;
+                        }
+                        requestAnimationFrame(updateSlider);
+                    }
+
+                    function playSpecificAudio(title, file) {
+                        if (audio) {
+                            audio.pause();
+                            audio.removeEventListener('ended', playNext);
+                            audio = undefined;
+                            isPlaying = false;
+                        }
+
+                        songs = [];
+                        specificAudio = { title: title, file: file };
+                        isPlayingSpecificAudio = true;
+
+                        updateCurrentlyPlaying(specificAudio.title);
+                        updateCoverArt(specificAudio.title);
+
+                        audio = new Audio(specificAudio.file);
+                        audio.volume = document.getElementById("volumeControl").value / 100;
+                        audio.play();
+                        isPlaying = true;
+
+                        document.getElementById("volumeControl").style.display = "block";
+                        updateSliderInterval = setInterval(updateSlider, 10);
+                        displayQueue();
+                    }
+
+                    function updateSlider() {
+                        if (audio) {
+                            progress.value = (audio.currentTime / audio.duration) * 100;
+                        }
+                    }
+
+                    // Add this function to clear the interval when audio is not playing
+                    function clearUpdateSliderInterval() {
+                        clearInterval(updateSliderInterval);
+                    }
+
+                    // Add this function to update time when the slider is changed
+                    function setTime() {
+                        if (audio) {
+                            audio.currentTime = (progress.value / 100) * audio.duration;
+                        }
+                    }
+                </script>
+</body>
+</html>
