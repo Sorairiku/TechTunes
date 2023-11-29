@@ -47,7 +47,6 @@
         #songList {
             align-self: flex-start;
             font-family: 'Open Sans', sans-serif;
-
         }
 
         #songQueue {
@@ -58,7 +57,21 @@
             z-index: 2;
             background: rgba(0, 0, 0, 0.8);
             border-radius: 25px;
+            border: 2px solid #4CAF50;
             font-family: 'Open Sans', sans-serif;
+        }
+
+        #song {
+            color: #fff;
+            position: absolute;
+            top: 100px;
+            left: 225px;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 25px;
+            font-family: 'Open Sans', sans-serif;
+            border: 2px solid #4CAF50;
+            padding: 20px;
         }
 
         .controls {
@@ -104,14 +117,17 @@
         #name {
             position: center;
         }
+
         .logo {
             display: inline-flex;
             justify-content: center;
             align-items: center;
         }
-        .logo div {
-            margin-right: 5px;
-        }
+
+            .logo div {
+                margin-right: 5px;
+            }
+
         #techtunes {
             height: 120px;
             width: 300px;
@@ -137,8 +153,8 @@
             transform: translate(-50%, -50%);
             z-index: 1;
             background: rgba(0, 0, 0, 0.8);
-            text-align: center;
             border-radius: 55px;
+            border: 2px solid #4CAF50;
             padding: 30px;
         }
 
@@ -216,7 +232,7 @@
             width: 100%;
             height: 6px;
             background: #fff;
-            border-radius: 4px;
+            border-radius: 25px;
             cursor: pointer;
         }
 
@@ -241,13 +257,15 @@
             margin: 0 15px;
             max-width: 300px;
             width: 100%;
-            padding: 0 20px;
+            padding: 1px;
             border-radius: 25px;
+            border: 2px solid #4CAF50;
+            background: rgba(0, 0, 0, 0.8);
         }
 
             .wrapper #icon {
                 font-size: 35px;
-                color: #000;
+                color: #034911;
                 width: 70px;
                 text-align: center;
             }
@@ -264,7 +282,7 @@
         .wrapper .slide-value {
             font-size: 27px;
             font-weight: 500;
-            color: #000;
+            color: #034911;
             width: 70px;
             text-align: center;
         }
@@ -324,11 +342,8 @@
                 right: 10px;
             }
         }
-
-        
-
     </style>
-    
+
     <div class="logo">
         <div><img id="techtunes" class="techtunes" alt="" src="./public/TechTunes.png"></div>
         <div><img id="tamlogo" class="tamlogo" alt="" src="./public/tamlogo.jpg"></div>
@@ -367,8 +382,9 @@
             }
         });
     </script>
+    <div id="song">Songs:</div>
     <div id="songList" class="list">
-        <p>Songs:</p>
+
         <ul>
             <!-- Add a class to the image for styling -->
             <img class="line-1" alt="" src="./public/line-1.svg">
@@ -447,227 +463,227 @@
 
     </div>
 
-                <div id="logoContainer">
-                    <img src="./public/feulogo.png" alt="FEU Logo">
-                </div>
+    <div id="logoContainer">
+        <img src="./public/feulogo.png" alt="FEU Logo">
+    </div>
 
-                <script>
-                    let audio;
-                    let songs = [];
-                    let isPlaying = false;
-                    let currentSongIndex = 0;
-                    let previousSongIndex = 0;
-                    let isPlayingSpecificAudio = false;
+    <script>
+        let audio;
+        let songs = [];
+        let isPlaying = false;
+        let currentSongIndex = 0;
+        let previousSongIndex = 0;
+        let isPlayingSpecificAudio = false;
 
-                    let specificAudio = {};
-                    let isChangingVolume = false;
+        let specificAudio = {};
+        let isChangingVolume = false;
 
-                    let progress = document.getElementById("progress");
-                    let updateSliderInterval;
+        let progress = document.getElementById("progress");
+        let updateSliderInterval;
 
-                    function enqueue(song) {
-                        if (isPlayingSpecificAudio) {
-                            songs.splice(1, 0, song);
-                        } else {
-                            songs.push(song);
-                        }
+        function enqueue(song) {
+            if (isPlayingSpecificAudio) {
+                songs.splice(1, 0, song);
+            } else {
+                songs.push(song);
+            }
 
-                        displayQueue();
+            displayQueue();
 
-                        if (!audio || isPlayingSpecificAudio) {
-                            playQueue();
-                        }
+            if (!audio || isPlayingSpecificAudio) {
+                playQueue();
+            }
 
-                        updateSlider();
-                    }
+            updateSlider();
+        }
 
-                    function dequeue(index) {
-                        if (index >= 0 && index < songs.length) {
-                            previousSongIndex = currentSongIndex;
-                            currentSongIndex = index;
+        function dequeue(index) {
+            if (index >= 0 && index < songs.length) {
+                previousSongIndex = currentSongIndex;
+                currentSongIndex = index;
 
-                            let currentSong = songs[index];
-                            updateCurrentlyPlaying(currentSong.title);
+                let currentSong = songs[index];
+                updateCurrentlyPlaying(currentSong.title);
 
-                            if (audio) {
-                                audio.pause();
-                                audio.removeEventListener('ended', playNext);
-                                audio = undefined;
-                                isPlaying = false;
-                            }
+                if (audio) {
+                    audio.pause();
+                    audio.removeEventListener('ended', playNext);
+                    audio = undefined;
+                    isPlaying = false;
+                }
 
-                            audio = new Audio(currentSong.file);
-                            audio.volume = document.getElementById("volumeControl").value / 100;
-                            audio.play();
-                            isPlaying = true;
+                audio = new Audio(currentSong.file);
+                audio.volume = document.getElementById("volumeControl").value / 100;
+                audio.play();
+                isPlaying = true;
 
-                            updateCoverArt(currentSong.title);
+                updateCoverArt(currentSong.title);
 
-                            document.getElementById("volumeControl").style.display = "block";
-                        } else {
-                            console.log("Invalid index.");
-                        }
-                        updateSlider();
-                    }
-                    updatePlayPauseIcon();
-                    
-                    // Add an event listener for the play/pause button
-                    document.getElementById("playPauseButton").addEventListener("click", togglePlayPauseButton);
+                document.getElementById("volumeControl").style.display = "block";
+            } else {
+                console.log("Invalid index.");
+            }
+            updateSlider();
+        }
+        updatePlayPauseIcon();
 
-                    // Function to toggle the play/pause button
-                    function togglePlayPauseButton() {
-                        if (audio) {
-                            if (isPlaying) {
-                                audio.pause();
-                            } else {
-                                audio.play();
-                                updateSliderInterval = setInterval(updateSlider, 10);
-                            }
-                            isPlaying = !isPlaying;
-                            updatePlayPauseIcon();
-                        } else if (songs.length > 0) {
-                            playQueue();
-                        }
-                    }
+        // Add an event listener for the play/pause button
+        document.getElementById("playPauseButton").addEventListener("click", togglePlayPauseButton);
 
-                    // Function to update the play/pause button icon
-                    function updatePlayPauseIcon() {
-                        let playPauseButton = document.getElementById("playPauseButton");
-                        if (isPlaying) {
-                            playPauseButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
-                        } else {
-                            playPauseButton.innerHTML = '<i class="fa-solid fa-play"></i>';
-                        }
-                    }
+        // Function to toggle the play/pause button
+        function togglePlayPauseButton() {
+            if (audio) {
+                if (isPlaying) {
+                    audio.pause();
+                } else {
+                    audio.play();
+                    updateSliderInterval = setInterval(updateSlider, 10);
+                }
+                isPlaying = !isPlaying;
+                updatePlayPauseIcon();
+            } else if (songs.length > 0) {
+                playQueue();
+            }
+        }
 
-                    // Call the function to set the initial icon based on whether audio is playing or not
-                    updatePlayPauseIcon();
+        // Function to update the play/pause button icon
+        function updatePlayPauseIcon() {
+            let playPauseButton = document.getElementById("playPauseButton");
+            if (isPlaying) {
+                playPauseButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+            } else {
+                playPauseButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+            }
+        }
+
+        // Call the function to set the initial icon based on whether audio is playing or not
+        updatePlayPauseIcon();
 
 
-                    function playQueue() {
-                        isPlayingSpecificAudio = false;
-                        specificAudio = {};
+        function playQueue() {
+            isPlayingSpecificAudio = false;
+            specificAudio = {};
 
-                        if (songs.length > 0) {
-                            dequeue(0);
-                            audio.addEventListener('ended', playNext);
-                            updateSliderInterval = setInterval(updateSlider, 10);
-                        }
-                    }
+            if (songs.length > 0) {
+                dequeue(0);
+                audio.addEventListener('ended', playNext);
+                updateSliderInterval = setInterval(updateSlider, 10);
+            }
+        }
 
-                    function playNext() {
-                        currentSongIndex = (currentSongIndex + 1) % songs.length;
-                        dequeue(currentSongIndex);
-                        displayQueue();
-                    }
+        function playNext() {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            dequeue(currentSongIndex);
+            displayQueue();
+        }
 
-                    function playPrevious() {
-                        if (audio) {
-                            audio.pause();
-                            audio.removeEventListener('ended', playNext);
-                            audio = undefined;
-                            isPlaying = false;
-                        }
+        function playPrevious() {
+            if (audio) {
+                audio.pause();
+                audio.removeEventListener('ended', playNext);
+                audio = undefined;
+                isPlaying = false;
+            }
 
-                        if (songs.length > 0) {
-                            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-                            dequeue(currentSongIndex);
-                            displayQueue();
-                        } else {
-                            currentSongIndex = 0;
-                            updateCurrentlyPlaying("");
-                        }
-                    }
+            if (songs.length > 0) {
+                currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+                dequeue(currentSongIndex);
+                displayQueue();
+            } else {
+                currentSongIndex = 0;
+                updateCurrentlyPlaying("");
+            }
+        }
 
-                    function displayQueue() {
-                        let queueElement = document.getElementById("queue");
-                        queueElement.innerHTML = "";
+        function displayQueue() {
+            let queueElement = document.getElementById("queue");
+            queueElement.innerHTML = "";
 
-                        songs.forEach((song, index) => {
-                            let listItem = document.createElement("li");
-                            listItem.textContent = song.title;
+            songs.forEach((song, index) => {
+                let listItem = document.createElement("li");
+                listItem.textContent = song.title;
 
-                            queueElement.appendChild(listItem);
-                        });
-                    }
+                queueElement.appendChild(listItem);
+            });
+        }
 
-                    function updateCurrentlyPlaying(title) {
-                        let currentlyPlayingElement = document.getElementById("currentlyPlaying");
-                        currentlyPlayingElement.textContent = title;
-                    }
+        function updateCurrentlyPlaying(title) {
+            let currentlyPlayingElement = document.getElementById("currentlyPlaying");
+            currentlyPlayingElement.textContent = title;
+        }
 
-                    function updateCoverArt(title) {
-                        let coverArtElement = document.getElementById("coverArt");
-                        coverArtElement.src = `./public/${title.toLowerCase()}-cover-art.jpg`;
-                        coverArtElement.style.display = "block";
-                    }
+        function updateCoverArt(title) {
+            let coverArtElement = document.getElementById("coverArt");
+            coverArtElement.src = `./public/${title.toLowerCase()}-cover-art.jpg`;
+            coverArtElement.style.display = "block";
+        }
 
-                    function setVolume() {
-                        if (!isChangingVolume) {
-                            if (audio) {
-                                audio.volume = document.getElementById("volumeControl").value / 100;
-                            }
-                        }
-                    }
+        function setVolume() {
+            if (!isChangingVolume) {
+                if (audio) {
+                    audio.volume = document.getElementById("volumeControl").value / 100;
+                }
+            }
+        }
 
-                    function startChangingVolume() {
-                        isChangingVolume = true;
-                    }
+        function startChangingVolume() {
+            isChangingVolume = true;
+        }
 
-                    function stopChangingVolume() {
-                        isChangingVolume = false;
-                        setVolume();
-                    }
+        function stopChangingVolume() {
+            isChangingVolume = false;
+            setVolume();
+        }
 
-                    function updateSlider() {
-                        if (audio) {
-                            progress.value = (audio.currentTime / audio.duration) * 100;
-                        }
-                        requestAnimationFrame(updateSlider);
-                    }
+        function updateSlider() {
+            if (audio) {
+                progress.value = (audio.currentTime / audio.duration) * 100;
+            }
+            requestAnimationFrame(updateSlider);
+        }
 
-                    function playSpecificAudio(title, file) {
-                        if (audio) {
-                            audio.pause();
-                            audio.removeEventListener('ended', playNext);
-                            audio = undefined;
-                            isPlaying = false;
-                        }
+        function playSpecificAudio(title, file) {
+            if (audio) {
+                audio.pause();
+                audio.removeEventListener('ended', playNext);
+                audio = undefined;
+                isPlaying = false;
+            }
 
-                        songs = [];
-                        specificAudio = { title: title, file: file };
-                        isPlayingSpecificAudio = true;
+            songs = [];
+            specificAudio = { title: title, file: file };
+            isPlayingSpecificAudio = true;
 
-                        updateCurrentlyPlaying(specificAudio.title);
-                        updateCoverArt(specificAudio.title);
+            updateCurrentlyPlaying(specificAudio.title);
+            updateCoverArt(specificAudio.title);
 
-                        audio = new Audio(specificAudio.file);
-                        audio.volume = document.getElementById("volumeControl").value / 100;
-                        audio.play();
-                        isPlaying = true;
+            audio = new Audio(specificAudio.file);
+            audio.volume = document.getElementById("volumeControl").value / 100;
+            audio.play();
+            isPlaying = true;
 
-                        document.getElementById("volumeControl").style.display = "block";
-                        updateSliderInterval = setInterval(updateSlider, 10);
-                        displayQueue();
-                    }
+            document.getElementById("volumeControl").style.display = "block";
+            updateSliderInterval = setInterval(updateSlider, 10);
+            displayQueue();
+        }
 
-                    function updateSlider() {
-                        if (audio) {
-                            progress.value = (audio.currentTime / audio.duration) * 100;
-                        }
-                    }
+        function updateSlider() {
+            if (audio) {
+                progress.value = (audio.currentTime / audio.duration) * 100;
+            }
+        }
 
-                    // Add this function to clear the interval when audio is not playing
-                    function clearUpdateSliderInterval() {
-                        clearInterval(updateSliderInterval);
-                    }
+        // Add this function to clear the interval when audio is not playing
+        function clearUpdateSliderInterval() {
+            clearInterval(updateSliderInterval);
+        }
 
-                    // Add this function to update time when the slider is changed
-                    function setTime() {
-                        if (audio) {
-                            audio.currentTime = (progress.value / 100) * audio.duration;
-                        }
-                    }
-                </script>
+        // Add this function to update time when the slider is changed
+        function setTime() {
+            if (audio) {
+                audio.currentTime = (progress.value / 100) * audio.duration;
+            }
+        }
+    </script>
 </body>
 </html>
